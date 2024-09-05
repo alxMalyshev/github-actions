@@ -1,0 +1,44 @@
+name: Build And Push Image
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    outputs:
+      semVer: ${{ steps.gitversion.outputs.semVer }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+      - name: Determine Version
+        id: gitversion # id to later be referenced
+        uses: gittools/actions/gitversion/execute@v0
+        with:
+          useConfigFile: true
+
+      - name: Display GitVersion outputs (step output)
+        run: |
+          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
+          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+          echo "LegacySemVer: ${{ steps.gitversion.outputs.legacySemVer }}"
+  
+  build:
+    runs-on: ubuntu-latest
+    needs: versioning
+    env:
+      SEMVER: ${{ needs.versioning.outputs.semVer }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run a script or command
+        run: |
+          echo "This job runs when a pull request is closed and merged into the main branch! ${SEMVER}"
