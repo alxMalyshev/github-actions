@@ -4,10 +4,9 @@ on:
     branches:
       - main
 jobs:
-  versioning:
+  GitVersion_v6_same_job:
+    name: GitVersion v6 (same job)
     runs-on: ubuntu-latest
-    outputs:
-      semVer: ${{ steps.version_step.outputs.semVer }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,15 +21,7 @@ jobs:
       - name: Determine Version
         id: version_step # step id used as reference for output values
         uses: gittools/actions/gitversion/execute@v3.0.0
-        with:
-          useConfigFile: true
 
-      - name: Display GitVersion outputs (step output)
-        run: |
-          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
-          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
-          echo "LegacySemVer: ${{ steps.gitversion.outputs.legacySemVer }}"
-      
       - run: |
           echo "FullSemVer (env.fullSemVer)            : ${{ env.fullSemVer }}"
         name: Display GitVersion variables (without prefix)
