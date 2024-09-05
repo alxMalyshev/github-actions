@@ -20,10 +20,8 @@ jobs:
           versionSpec: '6.x'
 
       - name: Determine Version
-        id: gitversion # id to later be referenced
+        id: version_step # step id used as reference for output values
         uses: gittools/actions/gitversion/execute@v3.0.0
-        with:
-          useConfigFile: true
 
       - name: Display GitVersion outputs (step output)
         run: |
