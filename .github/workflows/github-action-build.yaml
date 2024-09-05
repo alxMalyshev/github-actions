@@ -7,7 +7,7 @@ jobs:
   versioning:
     runs-on: ubuntu-latest
     outputs:
-      semVer: ${{ steps.gitversion.outputs.semVer }}
+      semVer: ${{ steps.version_step.outputs.semVer }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,6 +22,8 @@ jobs:
       - name: Determine Version
         id: version_step # step id used as reference for output values
         uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          useConfigFile: true
 
       - name: Display GitVersion outputs (step output)
         run: |
