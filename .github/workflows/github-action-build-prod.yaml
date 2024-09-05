@@ -1,8 +1,7 @@
-name: Build And Push Image
+name: Build And Push Image to Production
 on:
   push:
     branches:
-      - develop
       - main
   pull_request:
     branches: 
