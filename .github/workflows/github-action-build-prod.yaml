@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SEMVER: ${{ needs.versioning.outputs.semVer }}
-    needs: versioning
+    needs: [versioning,build]
     steps:
       - uses: actions/checkout@v4
       - name: Tag and push current repo code
@@ -67,6 +67,7 @@ jobs:
   bump_dev_version:
     if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
+    needs: [tagging]
     steps:
       - uses: actions/checkout@v4
       - name: Tag and push current repo code
