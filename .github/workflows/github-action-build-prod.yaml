@@ -70,8 +70,9 @@ jobs:
     needs: [tagging]
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: develop
       - name: Tag and push current repo code
         run: |
-          git checkout develop
           git commit --allow-empty -m "+bump: minor"
           git push origin develop
