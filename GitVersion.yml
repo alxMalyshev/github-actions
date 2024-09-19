@@ -7,7 +7,9 @@ branches:
   prod:
     regex: ^prod$
     tag: 'prod'
-    increment: Patch
+    increment: Inherit
+    source-branches:
+      - develop
   develop:
     regex: ^dev(elop)?(ment)?$
     tag: 'dev'
@@ -19,4 +21,3 @@ minor-version-bump-message: '\+(bump|semver):\s?(feature|minor)'
 patch-version-bump-message: '\+(bump|semver):\s?(fix|patch)'
 no-bump-message: '\+(bump|semver):\s?(none|skip)'
 merge-message-formats: {}
-
