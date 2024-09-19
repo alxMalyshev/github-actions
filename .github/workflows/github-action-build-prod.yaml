@@ -37,6 +37,7 @@ jobs:
           echo "Commit: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
           echo "Patch: ${{ steps.gitversion.outputs.Patch }}"
 
+
   
   build:
     if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'prod'
