@@ -4,6 +4,10 @@ branches:
     regex: ^main$
     tag: ''
     increment: Inherit
+  prod:
+    regex: ^prod$
+    tag: 'prod'
+    increment: Patch
   develop:
     regex: ^dev(elop)?(ment)?$
     tag: 'dev'
