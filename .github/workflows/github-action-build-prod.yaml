@@ -8,7 +8,6 @@ on:
 
 jobs:
   versioning:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'prod'
     runs-on: ubuntu-latest
     outputs:
       semVer: ${{ steps.gitversion.outputs.semVer }}
