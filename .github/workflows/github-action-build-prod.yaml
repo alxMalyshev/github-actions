@@ -1,8 +1,5 @@
 name: Build And Push Image to Production
 on:
-  push:
-    branches:
-      - prod
   pull_request:
     branches: 
       - prod
