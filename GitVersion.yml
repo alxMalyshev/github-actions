@@ -7,7 +7,7 @@ branches:
   prod:
     regex: ^prod$
     tag: 'prod'
-    increment: Patch
+    increment: Inherit
     source-branches:
       - develop
   develop:
