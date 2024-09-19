@@ -33,6 +33,7 @@ jobs:
           echo "LegacySemVer: ${{ steps.gitversion.outputs.legacySemVer }}"
           echo "Commit: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
           echo "Patch: ${{ steps.gitversion.outputs.Patch }}"
+          echo "GitHubRunNum: ${{ GITHUB_RUN_NUMBER }}"
   
   build:
     runs-on: ubuntu-latest
