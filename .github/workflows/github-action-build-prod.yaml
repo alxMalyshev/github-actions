@@ -1,13 +1,15 @@
 name: Build And Push Image to Production
 on:
+  push:
+    branches:
+      - prod
   pull_request:
     types:
       - closed
 
-
 jobs:
   versioning:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'prod'
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'prod' && github.event.pull_request.head.ref == 'develop'
     runs-on: ubuntu-latest
     outputs:
       semVer: ${{ steps.gitversion.outputs.semVer }}
