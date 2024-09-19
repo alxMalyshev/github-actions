@@ -1,6 +1,8 @@
 name: Build And Push Image to Production
 on:
   pull_request:
+    branches:
+      - develop
     types:
       - closed
 
