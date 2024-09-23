@@ -61,5 +61,5 @@ jobs:
           context: ./app
           file: ./app/Dockerfile
           push: false
-          tags: ghcr.io/tproject-s-u/rothb:${{ needs.versioning.outputs.semVer }}
+          tags: ghcr.io/tproject-s-u/rothb:${{ github.run_number }}
   
