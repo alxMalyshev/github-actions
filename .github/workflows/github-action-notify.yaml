@@ -47,14 +47,17 @@ jobs:
         if: always()
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TG_CHAT_ID }}
-          token: ${{ secrets.TG_TOKEN }}
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
-            ${{ job.status == 'success' && '✅' || '❌' }} Job: BUILD
-            Status: ${{ job.status }}
-            Project: ${{ github.repository }}
-            Commit message: ${{ github.event.head_commit.message }}
-            Link: https://github.com{{ github.repository }}/actions/runs/${{ github.run_id }}
+            ${{ job.status == 'success' && '✅' || '❌' }} *JOB: BUILD*
+            
+            *Status:* `${{ job.status }}`
+            *Project:* ${{ github.repository }}
+            *Commit:* [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})
+            
+            [Перейти к логам сборки](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
   
   # deploy:
   #   runs-on: ubuntu-latest
