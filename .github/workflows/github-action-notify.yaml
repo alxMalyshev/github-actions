@@ -44,10 +44,11 @@ jobs:
           token: ${{ secrets.TG_TOKEN }}
           format: markdown
           message: |
-            ${{ job.status == 'success' && '✅' || '❌' }} *JOB: BUILD*
+            ${{ job.status == 'success' && '✅' || '🚨' }} *JOB: BUILD*
             
             *Status:* `${{ job.status }}`
-            *Project:* ${{ github.repository }}
+            *Project:* `${{ github.repository }}`
+            *Branch:* `${{ github.ref_name }}`
             *Commit:* [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})
             
             [Перейти к логам сборки](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
@@ -64,10 +65,11 @@ jobs:
          token: ${{ secrets.TG_TOKEN }}
          format: markdown
          message: |
-           ${{ job.status == 'success' && '🚀' || '⚠️' }} *JOB: DEPLOY TO HERB-DEV1*
+           ${{ job.status == 'success' && '🚀' || '🚨' }} *JOB: DEPLOY TO HERB-DEV1*
            
            *Status:* `${{ job.status }}`
-           *Environment:* [herb-dev1](https://herb-dev1.tproject.su)
            *Project:* ${{ github.repository }}
+           *Branch:* `${{ github.ref_name }}`
+           *Environment:* [herb-dev1](https://herb-dev1.tproject.su)
            
-           [Отследить деплой](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+           [Перейти к логам сборки](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
