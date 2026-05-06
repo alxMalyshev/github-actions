@@ -42,6 +42,7 @@ jobs:
         with:
           to: ${{ secrets.TG_CHAT_ID }}
           token: ${{ secrets.TG_TOKEN }}
+          disable_web_page_preview: true
           format: markdown
           message: |
             ${{ job.status == 'success' && '✅' || '🚨' }} *JOB: BUILD*
@@ -63,12 +64,13 @@ jobs:
        with:
          to: ${{ secrets.TG_CHAT_ID }}
          token: ${{ secrets.TG_TOKEN }}
+         disable_web_page_preview: true
          format: markdown
          message: |
            ${{ job.status == 'success' && '🚀' || '🚨' }} *JOB: DEPLOY TO HERB-DEV1*
            
            *Status:* `${{ job.status }}`
-           *Project:* ${{ github.repository }}
+           *Project:* `${{ github.repository }}`
            *Branch:* `${{ github.ref_name }}`
            *Environment:* [herb-dev1](https://herb-dev1.tproject.su)
            
