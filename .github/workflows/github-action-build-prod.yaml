@@ -25,4 +25,6 @@ jobs:
         - name: Executing remote SSH commands
           run: |
             echo ${{ secrets.SSH_HOST }} 
+            echo ${{ github.event.inputs.environment }}
+            echo ${{ vars.SSH_HOST_TEST }}
             
