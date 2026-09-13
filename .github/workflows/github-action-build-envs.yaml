@@ -1,0 +1,31 @@
+name: TEST ENVs
+on:
+  push:
+    branches:
+      - envs
+
+  workflow_dispatch:
+      inputs:
+        environment:
+          description: 'Выберите окружение для деплоя'
+          required: true
+          default: 'skip'
+          type: choice
+          options:
+            - rutime
+            - cleverfoods
+            - skip
+
+jobs:
+
+  deploy:
+      runs-on: ubuntu-latest
+      environment: ${{ github.event.inputs.environment || 'rutime' }}
+
+      steps:
+        - name: Executing remote SSH commands
+          run: |
+            echo ${{ secrets.SSH_HOST }} 
+            echo ${{ github.event.inputs.environment }}
+            echo ${{ vars.SSH_HOST_TEST }}
+            
