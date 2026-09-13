@@ -25,3 +25,4 @@ jobs:
         - name: Executing remote SSH commands
           run: |
             echo ${{ secrets.SSH_HOST }} 
+            
